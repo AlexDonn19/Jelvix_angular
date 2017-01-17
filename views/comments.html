@@ -1,0 +1,35 @@
+﻿<div class="panel col-xs-12">
+    <div class="panel-primary col-xs-12">
+        <div class="well">
+            <h4>
+                <b>Comments on {{parentObj.comments.title}}</b>
+                <span class="label label-info">{{totalItems.comments}}</span>
+                <p>Limit: <select class="text-info" ng-model="limitValue.comments" ng-options="item for item in limitRange" ng-change="changedLimit('comments', limitValue.comments)"></select></p>
+            </h4>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="col-md-8">
+                        <span>Order by</span>
+                        <button class="btn btn-default" ng-click="changeOrder('comments', '-name')">Name</button>
+                        <button class="btn btn-default" ng-click="changeOrder('comments', '-body')">Text</button>
+                        <button class="btn btn-default" ng-click="changeOrder('comments', '-email')">Email</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="comment in itemsToShow.comments">
+                    <td class="struct">
+                        <h3>{{ comment.name }}</h3>
+                        <p>{{ comment.body }}</p>
+                        <p><a href="mailto:{{ comment.email }}">{{ comment.email }}</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <ul uib-pagination total-items="totalItems.comments" items-per-page="iPerPage" ng-model="currentPage.comments" max-size="5" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChange('comments', currentPage.comments)"></ul>
+        </div>
+    </div>
+</div>

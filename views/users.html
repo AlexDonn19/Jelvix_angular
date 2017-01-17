@@ -1,0 +1,36 @@
+﻿<div class="panel col-xs-12">
+    <div class="panel-primary col-xs-12">
+        <div class="well">
+            <h3>
+                Items in USERS list
+                <span class="label label-info">{{totalItems.users}}</span>
+                <p>Limit: <select class="text-info" ng-model="limitValue.users" ng-options="item for item in limitRange" ng-change="changedLimit('users', limitValue.users)"></select></p>
+            </h3>
+        </div>
+
+        <table class="table table-striped">
+        	<thead>
+        		<tr>
+                    <td class="col-md-8">
+                        <span>Order by</span>
+            			<button class="btn btn-default" ng-click="changeOrder('users', '-name')">Name</button>
+            			<button class="btn btn-default" ng-click="changeOrder('users', '-email')">Email</button>
+            			<button class="btn btn-default" ng-click="changeOrder('users', '-company.name')">Company</button>
+                    </td>
+        		</tr>
+        	</thead>
+        	<tbody>
+                <tr ng-repeat="user in itemsToShow.users">
+                    <td ng-click="selectItem(user, $event, 'users')">
+                        <h3><b>{{ user.name }}</b></h3>
+            			<p>Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+            			<p>Company: {{ user.company.name }}</p>
+                    </td>
+        		</tr>
+        	</tbody>
+        </table>
+    </div>
+    <div>
+        <ul uib-pagination total-items="totalItems.users" items-per-page="iPerPage" ng-model="currentPage.users" max-size=5 class="pagination-sm" boundary-link-numbers="true" ng-change="pageChange('users', currentPage.users)"></ul>
+    </div>
+</div>

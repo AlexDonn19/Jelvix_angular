@@ -1,0 +1,34 @@
+<div class="panel col-xs-12">
+    <div class="panel-primary col-xs-12">
+        <div class="well">
+            <h4>
+                Posts from <b>{{parentObj.posts.name}}<b>
+                <a href="mailto:{{parentObj.posts.email}}">{{parentObj.posts.email}}</a> 
+                <span class="label label-info">{{totalItems.posts}}</span>
+                <p>Limit: <select class="text-info" ng-model="limitValue.posts" ng-options="item for item in limitRange" ng-change="changedLimit('posts', limitValue.posts)"></select></p>
+            </h4> 
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="col-md-8">
+                        <span>Order by</span>
+                        <button class="btn btn-default" ng-click="changeOrder('posts', '-title')">Title</button>
+                        <button class="btn btn-default" ng-click="changeOrder('posts', '-body')">Body</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="post in itemsToShow.posts">
+                    <td ng-click="selectItem(post, $event, 'posts')">
+                        <h3><b>{{ post.title }}<b></h3>
+                        <h4>{{ post.body }}</h4>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <ul uib-pagination total-items="totalItems.posts" items-per-page="iPerPage" ng-model="currentPage.posts" max-size="5" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChange('posts', currentPage.posts)"></ul>
+    </div>
+</div>
